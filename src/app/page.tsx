@@ -29,6 +29,9 @@ export default function Home() {
   //   };
   //   fetchData();
   // });
+  if (!data) {
+    return <div>loading....</div>;
+  }
 
   return (
     <>
@@ -39,7 +42,7 @@ export default function Home() {
         <li className={y["red"]}>
           <Link href="./youtube">Youtube</Link>
         </li>
-        <Table />
+        <Table blogs={data} />
       </ul>
     </>
   );
