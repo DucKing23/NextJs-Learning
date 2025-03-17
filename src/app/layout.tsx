@@ -3,6 +3,7 @@ import Header from "@/components/app.header";
 import Table from "@/components/app.body";
 import { Container } from "react-bootstrap";
 import Footer from "@/components/app.footer";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Next.js",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <Header />
         <Container>{children}</Container>
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   );

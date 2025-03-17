@@ -42,7 +42,7 @@ export default function Home() {
         <li className={y["red"]}>
           <Link href="./youtube">Youtube</Link>
         </li>
-        <Table blogs={data} />
+        <Table blogs={data?.sort((a: any, b: any) => b.id - a.id)} />
       </ul>
     </>
   );

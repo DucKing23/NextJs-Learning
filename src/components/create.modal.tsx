@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import { toast } from "react-toastify";
+import { mutate } from "swr";
 interface IProps {
   showModalCreate: boolean;
   setShowModalCreate: (value: boolean) => void;
@@ -16,7 +17,38 @@ function CreateModal(props: IProps) {
   const [content, setContent] = useState<string>("");
 
   const handleSubmit = () => {
-    console.log(">> check data form: ", title, author, content);
+    // toast.success("Create succeed!...");
+    // console.log(">> check data form: ", title, author, content);
+    if (!title) {
+      toast.error("Not empty title !");
+      return;
+    }
+    if (!author) {
+      toast.error("Not empty author !");
+      return;
+    }
+
+    if (!content) {
+      toast.error("Not empty content !");
+      return;
+    }
+
+    fetch("http://localhost:8000/blogs", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, author, content }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res) {
+          toast.success("Create new blog succeed !");
+          handleCloseModal();
+          mutate("http://localhost:8000/blogs");
+        }
+      });
   };
 
   const handleCloseModal = () => {
