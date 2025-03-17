@@ -3,7 +3,12 @@ import Link from "next/link";
 import Card from "react-bootstrap/Card";
 import useSWR, { Fetcher } from "swr";
 
-const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
+type Params = {
+  params: {
+    id: string;
+  };
+};
+const ViewDetailBlog = ({ params }: Params) => {
   const fetcher: Fetcher<IBlog, string> = (url: string) =>
     fetch(url).then((res) => res.json());
 
