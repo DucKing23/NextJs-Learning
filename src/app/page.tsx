@@ -1,10 +1,15 @@
-"use client";
 import Link from "next/link";
 import x from "@/styles/app.module.css";
 import y from "@/styles/red1.module.css";
 import Table from "@/components/app.body";
 import { useEffect } from "react";
 import useSWR from "swr";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "HomePage",
+  description: "Description bla bla",
+};
 
 // Sử dụng thẻ Link để điều hướng trang giúp trang không bị load, làm tăng trải nghiệm người dùng
 export default function Home() {
